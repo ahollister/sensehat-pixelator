@@ -4,7 +4,7 @@
     <Title level="2" text="Click here to choose colours:"/>
     <ColorPicker @rgbChange="onRGBChange" model="rgb" v-bind:defaultRGB="defaultRGB"/>
     <Title level="2" text="Click on the pixels below to draw your image:"/>
-
+    <Pixel @pixelChange="onPixelChange" v-bind:defaultRGB="defaultRGB" v-for="i in 64" :key="i"/>
     <Title level="2" text="Are you using a real SenseHAT device, or an emulator?:"/>
 
     <Title
@@ -17,16 +17,21 @@
 <script>
 import Title from "./components/Title.vue";
 import ColorPicker from "./components/ColorPicker.vue";
+import Pixel from "./components/Pixel.vue";
 
 export default {
   name: "app",
   components: {
     Title,
-    ColorPicker
+    ColorPicker,
+    Pixel
   },
   methods: {
     onRGBChange(rgb) {
       this.currentRGB = rgb;
+    },
+    onPixelChange(rgb) {
+      console.log(rgb);
     }
   },
   mounted: function() {
