@@ -1,5 +1,5 @@
 <template>
-  <verte :model="model" v-model="rgb"/>
+  <verte display="vertical-widget" :model="model" v-model="rgb"/>
 </template>
 
 <script>
@@ -27,3 +27,9 @@ export default {
   }
 };
 </script>
+
+<style>
+.verte {
+  z-index: 999;
+}
+</style>

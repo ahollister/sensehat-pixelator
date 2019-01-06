@@ -36,7 +36,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .pixel {
   display: inline-block;
   width: 32px;

@@ -30,10 +30,14 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .pixel-grid {
   width: 256px;
   font-size: 0;
   margin: 0 auto;
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 </style>

@@ -1,0 +1,52 @@
+html,
+body {
+  font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-weight: 100;
+
+  background: #efefbb; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to top,
+    #d4d3dd,
+    #efefbb
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to top,
+    #d4d3dd,
+    #efefbb
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  line-height: 1.6;
+}
+
+body {
+  padding-bottom: 6em;
+}
+
+.app header {
+  background: white;
+  padding: 0.5em 0 0 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.22);
+}
+
+h1 {
+  font-size: 22px;
+  font-weight: 100;
+  margin: 0;
+  padding: 0 0 0.25em 1em;
+}
+
+h2 {
+  margin-top: 3em;
+  font-size: 22px;
+  text-align: center;
+  color: #333;
+}
+
+h2:first-of-type {
+  margin-top: 2em;
+}
+
+.app main {
+  max-width: 600px;
+  margin: 0 auto;
+}

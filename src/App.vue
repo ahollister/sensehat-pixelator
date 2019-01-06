@@ -1,17 +1,21 @@
 <template>
-  <div id="app">
-    <Title level="1" text="SenseHAT Pixelator"/>
-    <Title level="2" text="Click here to choose colours:"/>
-    <ColorPicker @rgbChange="onRGBChange" model="rgb" :defaultRGB="defaultRGB"/>
-    <Title level="2" text="Click on the pixels below to draw your image:"/>
-    <PixelGrid @pixelChange="onPixelChange" :defaultRGB="defaultRGB" :currentRGB="currentRGB"/>
-    <Title level="2" text="Are you using a real SenseHAT device, or an emulator?:"/>
-    <RadioOptions @radioChange="onRadioChange" :radioOptions="radioOptions"/>
-    <Title
-      level="2"
-      text="Copy this code into a new .py file and run the script with your SenseHAT plugged in or the emulator running:"
-    />
-    <CodeDisplay :code="finalCode"/>
+  <div id="app" class="app">
+    <header>
+      <Title level="1" text="SenseHAT Pixelator"/>
+    </header>
+    <main>
+      <Title level="2" text="Choose a color:"/>
+      <ColorPicker @rgbChange="onRGBChange" model="rgb" :defaultRGB="defaultRGB"/>
+      <Title level="2" text="Click on the pixels to draw your image:"/>
+      <PixelGrid @pixelChange="onPixelChange" :defaultRGB="defaultRGB" :currentRGB="currentRGB"/>
+      <Title level="2" text="Are you using a real SenseHAT device, or an emulator?:"/>
+      <RadioOptions @radioChange="onRadioChange" :radioOptions="radioOptions"/>
+      <Title
+        level="2"
+        text="Copy this code into a new .py file and run the script with your SenseHAT plugged in or the emulator running:"
+      />
+      <CodeDisplay :code="finalCode"/>
+    </main>
   </div>
 </template>
 
@@ -22,6 +26,8 @@ import Pixel from "./components/Pixel.vue";
 import PixelGrid from "./components/PixelGrid.vue";
 import RadioOptions from "./components/RadioOptions.vue";
 import CodeDisplay from "./components/CodeDisplay.vue";
+import "./assets/css/normalize.css";
+import "./assets/css/global.css";
 
 export default {
   name: "app",
@@ -53,11 +59,11 @@ export default {
           : "sense_emu";
 
       this.finalCode = `
-        from ${lib} import SenseHat
-        sense = SenseHat()
-        pixels = [${this.pixels.RGB}]
-        sense.set_pixels(pixels)
-      `;
+from ${lib} import SenseHat
+sense = SenseHat()
+pixels = [${this.pixels.RGB}]
+sense.set_pixels(pixels)
+`;
     }
   },
   mounted: function() {
