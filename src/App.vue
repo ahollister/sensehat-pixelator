@@ -15,6 +15,8 @@
         text="Copy this code into a new .py file and run the script with your SenseHAT plugged in or the emulator running:"
       />
       <CodeDisplay :code="finalCode"/>
+      <Title level="2" text="Or save it in your browser and come back to it later:"/>
+      <SaveForm :pixels="pixels" :deviceOrEmu="radioOptions.selected"/>
     </main>
   </div>
 </template>
@@ -26,6 +28,7 @@ import Pixel from "./components/Pixel.vue";
 import PixelGrid from "./components/PixelGrid.vue";
 import RadioOptions from "./components/RadioOptions.vue";
 import CodeDisplay from "./components/CodeDisplay.vue";
+import SaveForm from "./components/SaveForm.vue";
 import "./assets/css/normalize.css";
 import "./assets/css/global.css";
 
@@ -36,7 +39,8 @@ export default {
     ColorPicker,
     PixelGrid,
     RadioOptions,
-    CodeDisplay
+    CodeDisplay,
+    SaveForm
   },
   methods: {
     onRGBChange(rgb) {
@@ -77,6 +81,11 @@ sense.set_pixels(pixels)
     this.radioOptions.selected = this.radioOptions.options[0].name;
     // Generate the initial code
     this.generatePixelCode();
+    // If saves dont exist, set up an object for them
+    if (localStorage.getItem("savedPixels") === null) {
+      let savedPixels = JSON.stringify({ savedPixels: [] });
+      localStorage.setItem("savedPixels", savedPixels);
+    }
   },
   data() {
     return {
