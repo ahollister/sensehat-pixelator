@@ -11,11 +11,11 @@ export default {
   props: {
     defaultRGB: String,
     currentRGB: String,
-    index: Number
+    index: Number,
+    rgb: String
   },
   data() {
     return {
-      rgb: this.defaultRGB,
       id: `pixel-${this.index}`
     };
   },

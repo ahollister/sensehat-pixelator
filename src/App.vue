@@ -2,12 +2,29 @@
   <div id="app" class="app">
     <header>
       <Title level="1" text="SenseHAT Pixelator"/>
+      <LoadModal
+        v-if="savedPixels.savedPixels && savedPixels.savedPixels.length"
+        :savedPixels="savedPixels"
+        @onLoadPixel="onLoadPixel"
+        @onDeletePixel="onDeletePixel"
+      />
+      <SaveModal
+        @onSavePixel="onSavePixel"
+        :savedPixels="savedPixels"
+        :pixels="pixels"
+        :deviceOrEmu="radioOptions.selected"
+      />
     </header>
     <main>
       <Title level="2" text="Choose a color:"/>
       <ColorPicker @rgbChange="onRGBChange" model="rgb" :defaultRGB="defaultRGB"/>
       <Title level="2" text="Click on the pixels to draw your image:"/>
-      <PixelGrid @pixelChange="onPixelChange" :defaultRGB="defaultRGB" :currentRGB="currentRGB"/>
+      <PixelGrid
+        :pixelsRGB="pixels.RGB"
+        @pixelChange="onPixelChange"
+        :defaultRGB="defaultRGB"
+        :currentRGB="currentRGB"
+      />
       <Title level="2" text="Are you using a real SenseHAT device, or an emulator?:"/>
       <RadioOptions @radioChange="onRadioChange" :radioOptions="radioOptions"/>
       <Title
@@ -15,8 +32,6 @@
         text="Copy this code into a new .py file and run the script with your SenseHAT plugged in or the emulator running:"
       />
       <CodeDisplay :code="finalCode"/>
-      <Title level="2" text="Or save it in your browser and come back to it later:"/>
-      <SaveForm :pixels="pixels" :deviceOrEmu="radioOptions.selected"/>
     </main>
   </div>
 </template>
@@ -29,6 +44,8 @@ import PixelGrid from "./components/PixelGrid.vue";
 import RadioOptions from "./components/RadioOptions.vue";
 import CodeDisplay from "./components/CodeDisplay.vue";
 import SaveForm from "./components/SaveForm.vue";
+import LoadModal from "./components/LoadModal.vue";
+import SaveModal from "./components/SaveModal.vue";
 import "./assets/css/normalize.css";
 import "./assets/css/global.css";
 
@@ -40,7 +57,9 @@ export default {
     PixelGrid,
     RadioOptions,
     CodeDisplay,
-    SaveForm
+    SaveForm,
+    LoadModal,
+    SaveModal
   },
   methods: {
     onRGBChange(rgb) {
@@ -49,7 +68,7 @@ export default {
     },
     onPixelChange(e) {
       // Set to event when pixel changes, update pixelData on App
-      this.pixels.RGB[e.index - 1] = e.rgb.replace("rgb", "");
+      this.pixels.RGB[e.index] = e.rgb.replace("rgb", "");
       this.generatePixelCode();
     },
     onRadioChange(value) {
@@ -68,6 +87,19 @@ sense = SenseHat()
 pixels = [${this.pixels.RGB}]
 sense.set_pixels(pixels)
 `;
+    },
+    onSavePixel(e) {
+      this.savedPixels = e;
+    },
+    onLoadPixel(e) {
+      this.pixels.RGB = e.pixels.RGB;
+    },
+    onDeletePixel(e) {
+      let savedPixels = this.savedPixels.savedPixels.filter(item => {
+        return item.name !== e.name;
+      });
+      this.savedPixels.savedPixels = savedPixels;
+      localStorage.setItem("savedPixels", JSON.stringify(this.savedPixels));
     }
   },
   mounted: function() {
@@ -85,6 +117,8 @@ sense.set_pixels(pixels)
     if (localStorage.getItem("savedPixels") === null) {
       let savedPixels = JSON.stringify({ savedPixels: [] });
       localStorage.setItem("savedPixels", savedPixels);
+    } else {
+      this.savedPixels = JSON.parse(localStorage.getItem("savedPixels"));
     }
   },
   data() {
@@ -94,6 +128,7 @@ sense.set_pixels(pixels)
       pixels: {
         RGB: []
       },
+      savedPixels: {},
       radioOptions: {
         name: "deviceOrEmu",
         options: [
@@ -113,3 +148,27 @@ sense.set_pixels(pixels)
   }
 };
 </script>
+
+<style>
+button {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+  background: #00bfff;
+  cursor: pointer;
+}
+button:hover,
+button:focus {
+  background: #41d0ff;
+}
+input[type="text"] {
+  border-radius: 5px;
+  border: none;
+  box-shadow: inset 0px 0px 1px 1px rgba(71, 26, 26, 0.4),
+    0px 0px 0px 1px rgba(255, 255, 255, 0.5);
+  padding: 10px;
+}
+</style>

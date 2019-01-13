@@ -4,9 +4,10 @@
       @pixelChange="onPixelChange"
       :defaultRGB="defaultRGB"
       :currentRGB="currentRGB"
-      v-for="i in 64"
-      :key="i"
+      v-for="(pixel, i) in pixelsRGB"
+      :key="i+1"
       :index="i"
+      :rgb="'rgb' + pixel"
     />
   </div>
 </template>
@@ -20,7 +21,8 @@ export default {
   },
   props: {
     defaultRGB: String,
-    currentRGB: String
+    currentRGB: String,
+    pixelsRGB: Array
   },
   methods: {
     onPixelChange(e) {
