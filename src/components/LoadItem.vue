@@ -1,8 +1,10 @@
 <template>
   <li>
-    {{pixel.name}}
+    <span>{{pixel.name}}</span>
     <button @click="loadPixels">Load</button>
-    <button @click="deletePixels">Delete</button>
+    <button class="button-invisible" @click="deletePixels">
+      <v-icon name="trash-alt" scale="1.25"/>
+    </button>
   </li>
 </template>
 
@@ -22,3 +24,23 @@ export default {
   }
 };
 </script>
+<style scoped>
+.button-invisible {
+  align-self: center;
+}
+li span {
+  flex-grow: 1;
+  align-self: center;
+}
+li button {
+  margin-right: 1em;
+}
+svg {
+  align-self: center;
+  fill: #ff6969;
+}
+svg:hover,
+svg:focus {
+  fill: #fd8080;
+}
+</style>

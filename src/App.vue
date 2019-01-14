@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="app">
+  <div id="app" :class="{ modalOpen: modalOpen }">
     <header>
       <Title level="1" text="SenseHAT Pixelator"/>
       <LoadModal
@@ -7,9 +7,11 @@
         :savedPixels="savedPixels"
         @onLoadPixel="onLoadPixel"
         @onDeletePixel="onDeletePixel"
+        @onModalToggle="onModalToggle"
       />
       <SaveModal
         @onSavePixel="onSavePixel"
+        @onModalToggle="onModalToggle"
         :savedPixels="savedPixels"
         :pixels="pixels"
         :deviceOrEmu="radioOptions.selected"
@@ -100,6 +102,9 @@ sense.set_pixels(pixels)
       });
       this.savedPixels.savedPixels = savedPixels;
       localStorage.setItem("savedPixels", JSON.stringify(this.savedPixels));
+    },
+    onModalToggle(modalOpen) {
+      this.modalOpen = modalOpen;
     }
   },
   mounted: function() {
@@ -143,13 +148,42 @@ sense.set_pixels(pixels)
         ],
         selected: ""
       },
-      finalCode: ""
+      finalCode: "",
+      modalOpen: false
     };
   }
 };
 </script>
 
+<style scoped>
+header {
+  background: white;
+  padding: 0.5em 0 0.5em 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.22);
+  display: flex;
+  margin: 0;
+}
+header h1 {
+  flex: 1;
+  padding: 0 1rem;
+}
+header > div {
+  margin-right: 0.5em;
+}
+</style>
+
+
 <style>
+/* FIELDS */
+input[type="text"] {
+  border-radius: 5px;
+  border: none;
+  box-shadow: inset 0px 0px 1px 1px rgba(71, 26, 26, 0.4),
+    0px 0px 0px 1px rgba(255, 255, 255, 0.5);
+  padding: 10px;
+}
+
+/* BUTTONS */
 button {
   font-size: 14px;
   text-transform: uppercase;
@@ -164,11 +198,81 @@ button:hover,
 button:focus {
   background: #41d0ff;
 }
-input[type="text"] {
+.button-exit {
+  background: #ff6969;
+}
+.button-exit:hover,
+.button-exit:focus {
+  background: #fd8080;
+}
+.button-invisible {
+  padding: 0;
+  margin: 0;
+  background: transparent;
+}
+
+/* MODALS */
+.modalOpen {
+  height: 100%;
+  overflow-y: hidden;
+  position: fixed;
+}
+.modal {
+  position: fixed;
+  top: 0%;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 999;
+}
+.modal-content {
+  position: absolute;
+  top: 50%;
+  width: 280px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 0 1em 1em 1em;
   border-radius: 5px;
-  border: none;
-  box-shadow: inset 0px 0px 1px 1px rgba(71, 26, 26, 0.4),
-    0px 0px 0px 1px rgba(255, 255, 255, 0.5);
-  padding: 10px;
+  margin: 0 auto;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  overflow: scroll;
+  max-height: 380px;
+}
+@media only screen and (min-width: 768px) {
+  .modal-content {
+    overflow: scroll;
+    max-height: 600px;
+  }
+}
+.modal button.button-exit {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  z-index: 999;
+}
+@media only screen and (min-width: 600px) {
+  .modal button.button-exit {
+    top: 2em;
+    right: 2em;
+  }
+}
+.modal ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.modal li {
+  border-top: 1px solid #ddd;
+  padding: 0.75em 0;
+  display: flex;
+  justify-content: space-between;
+}
+.modal li:first-of-type {
+  border-top: none;
+}
+.modal li button {
+  height: fit-content;
 }
 </style>

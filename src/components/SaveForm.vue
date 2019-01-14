@@ -19,7 +19,7 @@ export default {
   },
   props: {
     pixels: {},
-    deviceOrEmu: ""
+    deviceOrEmu: String
   },
   methods: {
     onType() {

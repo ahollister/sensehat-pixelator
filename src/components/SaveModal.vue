@@ -2,12 +2,14 @@
   <div class="save-modal">
     <button @click="toggleModal">Save Pixels</button>
     <div class="modal" v-if="modalOpen">
-      <button @click="toggleModal">Exit</button>
+      <button class="button-exit" @click="toggleModal">Exit</button>
       <div class="modal-content">
         <div class="save">
           <Title level="3" text="Give your pixel art a unique name and save:"/>
-          <input type="text" @input="onType" v-model="saveName" placeholder="Give it a name">
-          <button @click="onSave">Save pixels</button>
+          <div class="save-form">
+            <input type="text" @input="onType" v-model="saveName" placeholder="Give it a name">
+            <button @click="onSave">Save</button>
+          </div>
           <div v-if="errorEmpty">Please enter a name for your pixels :)</div>
           <div v-if="errorNameExists">You already have a save under that name, please pick another</div>
         </div>
@@ -48,6 +50,7 @@ export default {
   methods: {
     toggleModal() {
       this.modalOpen = !this.modalOpen;
+      this.$emit("onModalToggle", this.modalOpen);
     },
     onType() {
       this.errorEmpty = false;
@@ -98,42 +101,14 @@ export default {
 </script>
 
 <style>
-.save-modal .modal {
-  position: fixed;
-  top: 0%;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.9);
-  z-index: 999;
+.save-modal .modal .save-form {
+  display: flex;
 }
-.save-modal .modal > button {
-  position: absolute;
-  top: 2em;
-  right: 2em;
+.save-modal .modal .save-form input {
+  margin-right: 0.25em;
+  flex-grow: 1;
 }
-.modal-content {
-  position: fixed;
-  top: 50%;
-  width: 280px;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  padding: 1em;
-  border-radius: 5px;
-  margin: 0 auto;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-}
-.save-modal .modal ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-.save-modal .modal li {
-  border-top: 1px solid #ddd;
-  padding: 0.75em 0;
-}
-.save-modal .modal li:first-of-type {
-  border-top: none;
+.save-modal .modal .save-form button {
+  flex-grow: 1;
 }
 </style>
