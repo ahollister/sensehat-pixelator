@@ -41,11 +41,9 @@
 <script>
 import Title from "./components/Title.vue";
 import ColorPicker from "./components/ColorPicker.vue";
-import Pixel from "./components/Pixel.vue";
 import PixelGrid from "./components/PixelGrid.vue";
 import RadioOptions from "./components/RadioOptions.vue";
 import CodeDisplay from "./components/CodeDisplay.vue";
-import SaveForm from "./components/SaveForm.vue";
 import LoadModal from "./components/LoadModal.vue";
 import SaveModal from "./components/SaveModal.vue";
 import "./assets/css/normalize.css";
@@ -59,7 +57,6 @@ export default {
     PixelGrid,
     RadioOptions,
     CodeDisplay,
-    SaveForm,
     LoadModal,
     SaveModal
   },
@@ -157,7 +154,6 @@ sense.set_pixels(pixels)
 
 <style scoped>
 header {
-  background: white;
   padding: 0.5em 0 0.5em 0;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.22);
   display: flex;

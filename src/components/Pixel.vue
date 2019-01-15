@@ -19,18 +19,15 @@ export default {
       id: `pixel-${this.index}`
     };
   },
-  methods: {
-    onPixelChange(e) {
-      if (e.target.checked) {
-        this.rgb = this.currentRGB;
-      } else {
-        this.rgb = this.defaultRGB;
-      }
-    }
-  },
   watch: {
     rgb() {
       this.$emit("pixelChange", { rgb: this.rgb, index: this.index });
+    }
+  },
+  methods: {
+    onPixelChange(e) {
+      this.rgb = this.defaultRGB;
+      if (e.target.checked) this.rgb = this.currentRGB;
     }
   }
 };
