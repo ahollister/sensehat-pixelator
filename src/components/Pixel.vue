@@ -1,6 +1,6 @@
 <template>
   <div class="pixel">
-    <label :for="id" v-bind:style="{ backgroundColor: rgb }">{{id}}</label>
+    <label :for="id" v-bind:style="{ backgroundColor: pixelRGB }">{{id}}</label>
     <input :id="id" type="checkbox" @change="onPixelChange">
   </div>
 </template>
@@ -16,47 +16,23 @@ export default {
   },
   data() {
     return {
-      id: `pixel-${this.index}`
+      id: `pixel-${this.index}`,
+      pixelRGB: this.rgb
     };
   },
   watch: {
+    pixelRGB() {
+      this.$emit("pixelChange", { rgb: this.pixelRGB, index: this.index });
+    },
     rgb() {
-      this.$emit("pixelChange", { rgb: this.rgb, index: this.index });
+      this.pixelRGB = this.rgb;
     }
   },
   methods: {
     onPixelChange(e) {
-      this.rgb = this.defaultRGB;
-      if (e.target.checked) this.rgb = this.currentRGB;
+      this.pixelRGB = this.defaultRGB;
+      if (e.target.checked) this.pixelRGB = this.currentRGB;
     }
   }
 };
 </script>
-
-<style scoped>
-.pixel {
-  display: inline-block;
-  width: 32px;
-  height: 32px;
-  position: relative;
-  margin: 0;
-}
-
-.pixel label {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: 9;
-  outline: 1px solid white;
-}
-
-.pixel input[type="checkbox"] {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin: 0;
-}
-</style>

@@ -1,0 +1,26 @@
+button {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+  background: #00bfff;
+  cursor: pointer;
+}
+button:hover,
+button:focus {
+  background: #41d0ff;
+}
+.button-exit {
+  background: #ff6969;
+}
+.button-exit:hover,
+.button-exit:focus {
+  background: #fd8080;
+}
+.button-invisible {
+  padding: 0;
+  margin: 0;
+  background: transparent;
+}

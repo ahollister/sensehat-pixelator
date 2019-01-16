@@ -1,5 +1,5 @@
 <template>
-  <verte display="vertical-widget" :model="model" v-model="rgb"/>
+  <verte :draggable="false" display="widget" :model="model" v-model="rgb"/>
 </template>
 
 <script>

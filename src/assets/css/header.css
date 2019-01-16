@@ -1,0 +1,20 @@
+header {
+  background: #0f2027;
+  background: -webkit-linear-gradient(to left, #2c5364, #203a43, #0f2027);
+  background: linear-gradient(to left, #2c5364, #203a43, #0f2027);
+  padding: 0.5em 0 0.5em 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.22);
+  display: flex;
+  margin: 0;
+}
+header h1 {
+  flex: 1;
+  padding: 0 1rem;
+  font-size: 22px;
+  font-weight: 100;
+  margin: 0;
+  color: #fff;
+}
+header > div {
+  margin-right: 0.5em;
+}
