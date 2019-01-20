@@ -41,11 +41,11 @@ header nav > .load-modal {
     flex: none;
   }
 }
-header nav button {
+header nav > div > button {
   background: transparent;
 }
-header nav button:hover,
-header nav button:focus {
+header nav > div > button:hover,
+header nav > div > button:focus {
   background: transparent;
   text-decoration: underline;
 }
