@@ -1,20 +1,51 @@
-header {
-  background: #0f2027;
-  background: -webkit-linear-gradient(to left, #2c5364, #203a43, #0f2027);
-  background: linear-gradient(to left, #2c5364, #203a43, #0f2027);
-  padding: 0.5em 0 0.5em 0;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.22);
-  display: flex;
-  margin: 0;
-}
 header h1 {
-  flex: 1;
   padding: 0 1rem;
-  font-size: 22px;
-  font-weight: 100;
-  margin: 0;
-  color: #fff;
+  font-size: 30px;
+  font-family: "Press Start 2P";
+  text-align: center;
+  margin: 1em auto 2em auto;
+  color: #82aaff;
+  letter-spacing: 2px;
+  text-shadow: -1px -1px 0px #fff, 2px 2px 0px #ef5350, 4px 4px 0px #22da6e;
+}
+@media only screen and (min-width: 600px) {
+  header h1 {
+    margin: 0.5em auto 2em auto;
+    font-size: 60px;
+    text-shadow: -1px -1px 0px #fff, 3px 3px 0px #ef5350, 6px 6px 0px #22da6e;
+  }
 }
 header > div {
   margin-right: 0.5em;
+}
+
+h2 {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 100;
+}
+
+header nav {
+  display: flex;
+}
+header nav > .load-modal {
+  flex: 1;
+}
+@media only screen and (min-width: 768px) {
+  header nav {
+    display: block;
+    text-align: right;
+  }
+  header nav > div {
+    display: inline-block;
+    flex: none;
+  }
+}
+header nav button {
+  background: transparent;
+}
+header nav button:hover,
+header nav button:focus {
+  background: transparent;
+  text-decoration: underline;
 }

@@ -1,21 +1,23 @@
 <template>
   <div id="app" :class="{ modalOpen: modalOpen }">
     <header>
+      <nav>
+        <LoadModal
+          v-if="savedPixels.savedPixels && savedPixels.savedPixels.length"
+          :savedPixels="savedPixels"
+          @onLoadPixel="onLoadPixel"
+          @onDeletePixel="onDeletePixel"
+          @onModalToggle="onModalToggle"
+        />
+        <SaveModal
+          @onSavePixel="onSavePixel"
+          @onModalToggle="onModalToggle"
+          :savedPixels="savedPixels"
+          :pixels="pixels"
+          :deviceOrEmu="radioOptions.selected"
+        />
+      </nav>
       <Title level="1" text="SenseHAT Pixelator"/>
-      <LoadModal
-        v-if="savedPixels.savedPixels && savedPixels.savedPixels.length"
-        :savedPixels="savedPixels"
-        @onLoadPixel="onLoadPixel"
-        @onDeletePixel="onDeletePixel"
-        @onModalToggle="onModalToggle"
-      />
-      <SaveModal
-        @onSavePixel="onSavePixel"
-        @onModalToggle="onModalToggle"
-        :savedPixels="savedPixels"
-        :pixels="pixels"
-        :deviceOrEmu="radioOptions.selected"
-      />
     </header>
     <main>
       <div class="component component-colorpicker">
