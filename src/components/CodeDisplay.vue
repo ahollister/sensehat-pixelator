@@ -1,28 +1,35 @@
 <template>
-  <pre>
-    <code>
-      {{code}}
-    </code>
-  </pre>
+  <pre class="component component--code-display"><button
+  v-if="!isCopied"
+  v-clipboard="() => code"
+  v-clipboard:success="onClipboardSuccess"
+>Copy to clipboard</button><button
+  v-if="isCopied"
+  class="button-inactive"
+>Copied!</button><code>{{code}}</code></pre>
 </template>
 
 <script>
 export default {
   name: "CodeDisplay",
   props: {
-    code: ""
+    code: String
+  },
+  data() {
+    return {
+      isCopied: false
+    };
+  },
+  methods: {
+    onClipboardSuccess() {
+      this.isCopied = true;
+    }
+  },
+  watch: {
+    // When 'code' changes, set isCopied to false so user can copy again
+    code() {
+      this.isCopied = false;
+    }
   }
 };
 </script>
-
-<style scoped>
-pre {
-  white-space: pre-wrap;
-  padding: 0 50px;
-  margin: 0 auto;
-  max-width: 500px;
-  border-radius: 5px;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-  background: white;
-}
-</style>

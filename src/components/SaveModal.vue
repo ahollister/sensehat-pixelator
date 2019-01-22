@@ -1,15 +1,15 @@
 <template>
-  <div class="save-modal">
+  <div class="component component--save-modal">
     <button @click="toggleModal">Save Pixels</button>
     <div class="modal" v-if="modalOpen">
       <button class="button-exit" @click="toggleModal">Exit</button>
       <div class="modal-content">
         <div class="save">
           <Title level="3" text="Give your pixel art a unique name and save:"/>
-          <div class="save-form">
+          <form class="save-form" v-on:submit.prevent="onSave">
             <input type="text" @input="onType" v-model="saveName" placeholder="Give it a name">
-            <button @click="onSave">Save</button>
-          </div>
+            <button>Save</button>
+          </form>
           <div v-if="errorEmpty">Please enter a name for your pixels :)</div>
           <div v-if="errorNameExists">You already have a save under that name, please pick another</div>
         </div>
@@ -34,6 +34,11 @@ export default {
   components: {
     Title
   },
+  props: {
+    savedPixels: {},
+    pixels: {},
+    deviceOrEmu: ""
+  },
   data() {
     return {
       modalOpen: false,
@@ -42,20 +47,17 @@ export default {
       errorNameExists: false
     };
   },
-  props: {
-    savedPixels: {},
-    pixels: {},
-    deviceOrEmu: ""
-  },
   methods: {
     toggleModal() {
       this.modalOpen = !this.modalOpen;
       this.$emit("onModalToggle", this.modalOpen);
     },
+    // When user types, get rid of error msgs
     onType() {
       this.errorEmpty = false;
       this.errorNameExists = false;
     },
+    // When user saves, validate set data in localStorage and pass state back to App
     onSave() {
       // Error: Name field empty
       if (this.saveName === "") {
@@ -78,8 +80,10 @@ export default {
       pixelData.savedPixels.push(pixelSave);
       localStorage.setItem("savedPixels", JSON.stringify(pixelData));
       this.$emit("onSavePixel", pixelData);
+      this.saveName = "";
       this.toggleModal();
     },
+    // Overwrite an existing saved option with new data
     onOverwrite(p) {
       let pixelData = JSON.parse(localStorage.getItem("savedPixels"));
       this.saveName = p.name;
@@ -94,21 +98,9 @@ export default {
       pixelData.savedPixels.push(pixelSave);
       localStorage.setItem("savedPixels", JSON.stringify(pixelData));
       this.$emit("onSavePixel", pixelData);
+      this.saveName = "";
       this.toggleModal();
     }
   }
 };
 </script>
-
-<style>
-.save-modal .modal .save-form {
-  display: flex;
-}
-.save-modal .modal .save-form input {
-  margin-right: 0.25em;
-  flex-grow: 1;
-}
-.save-modal .modal .save-form button {
-  flex-grow: 1;
-}
-</style>

@@ -1,0 +1,18 @@
+.component.component--load-modal-item span {
+  flex-grow: 1;
+  align-self: center;
+}
+.component.component--load-modal-item button {
+  margin-right: 1em;
+}
+.component.component--load-modal-item .button-invisible {
+  align-self: center;
+}
+.component.component--load-modal-item svg {
+  align-self: center;
+  fill: #ff6969;
+}
+.component.component--load-modal-item svg:hover,
+.component.component--load-modal-item svg:focus {
+  fill: #fd8080;
+}

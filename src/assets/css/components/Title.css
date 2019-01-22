@@ -1,0 +1,30 @@
+h1 {
+  transform: skewY(-1deg);
+  padding: 0 1rem;
+  font-size: 30px;
+  font-family: "Press Start 2P";
+  text-align: center;
+  margin: 1em auto 2em auto;
+  color: #82aaff;
+  letter-spacing: 2px;
+  text-shadow: -1px -1px 0px #fff, 2px 2px 0px #ef5350, 4px 4px 0px #22da6e;
+}
+@media only screen and (min-width: 600px) {
+  h1 {
+    margin: 1em auto 2.25em auto;
+    font-size: 60px;
+    text-shadow: -1px -1px 0px #fff, 3px 3px 0px #ef5350, 6px 6px 0px #22da6e;
+  }
+}
+
+h2 {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 100;
+  margin-top: 3em;
+  text-align: center;
+}
+
+h2:first-of-type {
+  margin-top: 2em;
+}

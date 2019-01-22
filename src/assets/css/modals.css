@@ -1,4 +1,4 @@
-/* MODALS */
+/* Modals - toggle states */
 .modalOpen {
   height: 100%;
   overflow-y: hidden;
@@ -13,7 +13,22 @@
   width: 100%;
   background: rgba(0, 0, 0, 0.9);
   z-index: 999;
+  text-align: left;
 }
+.modal button.button-exit {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  z-index: 999;
+}
+@media only screen and (min-width: 600px) {
+  .modal button.button-exit {
+    top: 2em;
+    right: 2em;
+  }
+}
+
+/* Modal content */
 .modal-content {
   position: absolute;
   top: 50%;
@@ -34,18 +49,8 @@
     max-height: 600px;
   }
 }
-.modal button.button-exit {
-  position: absolute;
-  top: 0.5em;
-  right: 0.5em;
-  z-index: 999;
-}
-@media only screen and (min-width: 600px) {
-  .modal button.button-exit {
-    top: 2em;
-    right: 2em;
-  }
-}
+
+/* Modal lists */
 .modal ul {
   list-style-type: none;
   padding: 0;
@@ -64,7 +69,7 @@
   height: fit-content;
 }
 
-/* FIELDS */
+/* Modal form fields */
 .modal input[type="text"] {
   border-radius: 5px;
   border: none;

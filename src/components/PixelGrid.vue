@@ -1,5 +1,5 @@
 <template>
-  <div class="pixel-grid">
+  <div class="component component--pixel-grid">
     <Pixel
       @pixelChange="onPixelChange"
       :defaultRGB="defaultRGB"
@@ -25,6 +25,7 @@ export default {
     pixelsRGB: Array
   },
   methods: {
+    // Originates in pixel, pass data to App
     onPixelChange(e) {
       this.$emit("pixelChange", { rgb: e.rgb, index: e.index });
     }

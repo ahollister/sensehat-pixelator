@@ -1,42 +1,23 @@
-.pixel-grid {
-  width: 256px;
-  font-size: 0;
-  margin: 0 auto;
-  background: white;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-}
-
-.pixel {
+.component.component--pixel {
   display: inline-block;
   width: 32px;
   height: 32px;
   position: relative;
   margin: 0;
 }
-
 @media only screen and (min-width: 420px) {
-  .pixel-grid {
-    width: 352px;
-  }
-  .pixel {
+  .component.component--pixel {
     width: 44px;
     height: 44px;
   }
 }
-
 @media only screen and (min-width: 768px) {
-  .pixel-grid {
-    width: 256px;
-  }
-  .pixel {
-    width: 32px;
-    height: 32px;
+  .component.component--pixel {
+    width: 46px;
+    height: 46px;
   }
 }
-
-.pixel label {
+.component.component--pixel label {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -45,8 +26,7 @@
   z-index: 9;
   outline: 1px solid white;
 }
-
-.pixel input[type="checkbox"] {
+.component.component--pixel input[type="checkbox"] {
   position: absolute;
   top: 50%;
   left: 50%;

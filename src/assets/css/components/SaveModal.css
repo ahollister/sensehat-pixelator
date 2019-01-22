@@ -1,0 +1,10 @@
+.component.component--save-modal .modal .save-form {
+  display: flex;
+}
+.component.component--save-modal .modal .save-form input {
+  margin-right: 0.25em;
+  flex-grow: 1;
+}
+.component.component--save-modal .modal .save-form button {
+  flex-grow: 1;
+}

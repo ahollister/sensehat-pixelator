@@ -21,15 +21,10 @@ export default {
     };
   },
   watch: {
+    // When rgb changes, pass data for chosen colour to App
     rgb() {
       this.$emit("rgbChange", this.rgb);
     }
   }
 };
 </script>
-
-<style>
-.verte {
-  z-index: 99;
-}
-</style>

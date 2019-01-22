@@ -1,0 +1,18 @@
+.component.component--code-display {
+  position: relative;
+  white-space: pre-wrap;
+  padding: 50px 50px;
+  margin: 0 auto;
+  max-width: 500px;
+  border-radius: 5px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  background: white;
+}
+.component.component--code-display button {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  top: 0;
+  right: 0;
+  border-radius: 0 5px 0 5px;
+}

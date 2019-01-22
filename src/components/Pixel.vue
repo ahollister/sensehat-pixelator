@@ -1,5 +1,5 @@
 <template>
-  <div class="pixel">
+  <div class="component component--pixel">
     <label :for="id" v-bind:style="{ backgroundColor: pixelRGB }">{{id}}</label>
     <input :id="id" type="checkbox" @change="onPixelChange">
   </div>
@@ -20,18 +20,21 @@ export default {
       pixelRGB: this.rgb
     };
   },
-  watch: {
-    pixelRGB() {
-      this.$emit("pixelChange", { rgb: this.pixelRGB, index: this.index });
-    },
-    rgb() {
-      this.pixelRGB = this.rgb;
-    }
-  },
   methods: {
+    // When a pixel changes, set the pixel color
     onPixelChange(e) {
       this.pixelRGB = this.defaultRGB;
       if (e.target.checked) this.pixelRGB = this.currentRGB;
+    }
+  },
+  watch: {
+    // When a pixelRGB changes, pass that data back to App
+    pixelRGB() {
+      this.$emit("pixelChange", { rgb: this.pixelRGB, index: this.index });
+    },
+    // Don't mutate props directly
+    rgb() {
+      this.pixelRGB = this.rgb;
     }
   }
 };

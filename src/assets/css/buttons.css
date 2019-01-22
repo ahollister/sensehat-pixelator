@@ -24,3 +24,6 @@ button:focus {
   margin: 0;
   background: transparent;
 }
+.button-inactive {
+  background: #ccc;
+}

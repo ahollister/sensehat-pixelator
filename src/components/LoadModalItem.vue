@@ -1,5 +1,5 @@
 <template>
-  <li>
+  <li class="component component--load-modal-item">
     <span>{{pixel.name}}</span>
     <button @click="loadPixels">Load</button>
     <button class="button-invisible" @click="deletePixels">
@@ -10,37 +10,19 @@
 
 <script>
 export default {
-  name: "LoadItem",
+  name: "LoadModalItem",
   props: {
     pixel: {}
   },
   methods: {
+    // Emit an event to tell App which pixel data to load
     loadPixels() {
       this.$emit("onLoadPixel", this.pixel);
     },
+    // Emit an event to tell App which pixel data to delete
     deletePixels() {
       this.$emit("onDeletePixel", this.pixel);
     }
   }
 };
 </script>
-<style scoped>
-.button-invisible {
-  align-self: center;
-}
-li span {
-  flex-grow: 1;
-  align-self: center;
-}
-li button {
-  margin-right: 1em;
-}
-svg {
-  align-self: center;
-  fill: #ff6969;
-}
-svg:hover,
-svg:focus {
-  fill: #fd8080;
-}
-</style>
