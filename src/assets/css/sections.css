@@ -1,3 +1,6 @@
 .section {
   margin-bottom: 8em;
 }
+.section.section-codedisplay {
+  margin-bottom: 10em;
+}

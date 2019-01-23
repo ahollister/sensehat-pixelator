@@ -16,6 +16,7 @@
           :pixels="pixels"
           :deviceOrEmu="radioOptions.selected"
         />
+        <InfoModal @onModalToggle="onModalToggle"></InfoModal>
       </nav>
       <Title level="1" text="SenseHAT Pixelator"/>
     </header>
@@ -48,28 +49,33 @@
         <CodeDisplay :code="finalCode"/>
       </div>
     </main>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
 import Title from "./components/Title.vue";
+import Footer from "./components/Footer.vue";
 import ColorPicker from "./components/ColorPicker.vue";
 import PixelGrid from "./components/PixelGrid.vue";
 import RadioOptions from "./components/RadioOptions.vue";
 import CodeDisplay from "./components/CodeDisplay.vue";
 import LoadModal from "./components/LoadModal.vue";
 import SaveModal from "./components/SaveModal.vue";
+import InfoModal from "./components/InfoModal.vue";
 
 export default {
   name: "app",
   components: {
     Title,
+    Footer,
     ColorPicker,
     PixelGrid,
     RadioOptions,
     CodeDisplay,
     LoadModal,
-    SaveModal
+    SaveModal,
+    InfoModal
   },
   data() {
     return {
@@ -184,4 +190,5 @@ sense.set_pixels(pixels)
 @import "./assets/css/components/PixelGrid.css";
 @import "./assets/css/components/Pixel.css";
 @import "./assets/css/components/CodeDisplay.css";
+@import "./assets/css/components/Footer.css";
 </style>

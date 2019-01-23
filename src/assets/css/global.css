@@ -1,5 +1,5 @@
 body {
-  padding-bottom: 6em;
+  padding-bottom: 2em;
   font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   font-weight: 100;
@@ -33,8 +33,8 @@ body:after {
   );
   width: 100%;
   position: fixed;
-  top: 0;
   bottom: 0;
+  height: 100%;
   z-index: -1;
 }
 

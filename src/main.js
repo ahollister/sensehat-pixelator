@@ -1,6 +1,8 @@
 import Vue from "vue";
 import App from "./App.vue";
 import "vue-awesome/icons/trash-alt";
+import "vue-awesome/icons/heart";
+
 import Icon from "vue-awesome/components/Icon";
 import Clipboard from "v-clipboard";
 

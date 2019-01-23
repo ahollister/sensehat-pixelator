@@ -1,5 +1,5 @@
 h1 {
-  transform: skewY(-1deg);
+  transform: skewY(-2deg);
   padding: 0 1rem;
   font-size: 30px;
   font-family: "Press Start 2P";
@@ -8,6 +8,11 @@ h1 {
   color: #82aaff;
   letter-spacing: 2px;
   text-shadow: -1px -1px 0px #fff, 2px 2px 0px #ef5350, 4px 4px 0px #22da6e;
+}
+@media only screen and (min-width: 420px) {
+  h1 {
+    font-size: 40px;
+  }
 }
 @media only screen and (min-width: 600px) {
   h1 {

@@ -1,0 +1,21 @@
+.component.component--footer {
+  text-align: center;
+  color: white;
+}
+.component.component--footer a {
+  color: white;
+  margin: 0 1em;
+}
+.component.component--footer a:hover {
+  color: #ddd;
+}
+.component.component--footer h3 a {
+  margin: 0;
+}
+.component.component--footer h3 svg {
+  fill: #ce3434;
+  position: relative;
+  top: 4px;
+  left: -2px;
+  margin: 0 0.25em;
+}
